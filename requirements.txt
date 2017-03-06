@@ -3,6 +3,7 @@ bs4==0.0.1
 click==6.7
 facebook-sdk==2.0.0
 Flask==0.12
+gunicorn==19.7.0
 itsdangerous==0.24
 Jinja2==2.9.5
 MarkupSafe==0.23
