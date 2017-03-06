@@ -4,6 +4,9 @@ import meetupdirectory
 import os
 
 app = Flask(__name__)
+app.use_reloader=False
+app.debug=False
+
 
 @app.route('/')
 def hello():
