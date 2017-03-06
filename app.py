@@ -13,4 +13,5 @@ def hello():
         meetups.append(mt)
     return render_template('index.html', meetups=meetups)
 
-app.run()
+port = int(os.environ.get('PORT', 5000))
+app.run(host='0.0.0.0', port=port)
