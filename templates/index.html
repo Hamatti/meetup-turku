@@ -1,0 +1,52 @@
+<!doctype html>
+
+<html>
+    <head>
+        <meta charset="utf8">
+        <meta property="og:title" content="All tech meetups in Turku on one
+        page">
+        <meta property="og:description" content="Find the upcoming meetups in
+        Turku with one glance.">
+
+        <title>Meetups Turku</title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+        crossorigin="anonymous">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Meetups in Turku</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    {% for meetup in meetups %}
+                    <h1><a href="{{meetup.url}}" target=_blank>{{ meetup.name }} </a></h1>
+                    <h3>Next meetup: {{ meetup.next_event }}</h3>
+                    <hr />
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>
+
