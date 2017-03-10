@@ -7,6 +7,7 @@ class Event(object):
         self.meetup_url = ''
         self.event_name = ''
         self.event_date = ''
+        self.event_url = ''
 
     def __str__(self):
         return '[{meetup}] {event_name} @ {event_date}'.format(meetup=self.meetup_name,
@@ -15,6 +16,10 @@ class Event(object):
     def __repr__(self):
         return '[{meetup}] {event_name} @ {event_date}'.format(meetup=self.meetup_name,
                 event_name=self.event_name, event_date=self.date)
+
+    def html(self):
+        return '<i class="fa fa-calendar"></i> {event_date} {event_name}'.format(event_date=self.date,
+                event_name=self.event_name)
 
     @property
     def date(self):

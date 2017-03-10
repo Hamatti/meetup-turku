@@ -49,16 +49,22 @@ class FacebookParser(Parser):
             self.future_events = []
             return
         events = self.graph.get_connections(self.facebook_id, connection_name='events')['data']
+
         time_now = datetime.now()
         if not events:
             self.next_event = None
         else:
             next_event_data = events[0]
+            date = datetime.strptime(next_event_data['start_time'][:-5], '%Y-%m-%dT%H:%M:%S')
+            if date < time_now:
+                self.next_event = None
+                return
             self.next_event = Event()
             self.next_event.meetup_name = self.meetup.name
             self.next_event.meetup_url = self.meetup.url
             self.next_event.event_name = next_event_data['name']
-            self.next_event.event_date = datetime.strptime(next_event_data['start_time'][:-5], '%Y-%m-%dT%H:%M:%S')
+            self.next_event.event_date = date
+            self.next_event.event_url = 'https://facebook.com/events/%s' % next_event_data['id']
 
     def parse_time(self, timestamp):
         return datetime.strptime(timestamp[:-5], '%Y-%m-%dT%H:%M:%S')
@@ -84,6 +90,7 @@ class MeetabitParser(Parser):
             self.next_event.event_name = next_event['name']
             self.next_event.meetup_name = self.meetup.name
             self.next_event.meetup_url = self.meetup.url
+            self.next_event.event_url = next_event['url']
         else:
             self.next_event = None
 
@@ -105,4 +112,7 @@ class MeetupParser(Parser):
         event.event_date = datetime.fromtimestamp(next_event['time']/1000)
         event.meetup_name = self.meetup.name
         event.meetup_url = self.meetup.url
+
+        event_id = next_event['id']
+        event.event_url = 'https://www.meetup.com/%s/events/%s/' % (self.urlname, event_id)
         self.next_event = event

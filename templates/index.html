@@ -40,7 +40,15 @@
                 <div class="col-md-12">
                     {% for meetup in meetups %}
                     <h1><a href="{{meetup.url}}" target=_blank>{{ meetup.name }} </a></h1>
-                    <h3>Next meetup: {{ meetup.next_event }}</h3>
+                    <h3>{% if meetup.next_event %}
+                            Next meetup:
+                            <a href="{{meetup.next_event.event_url
+                                }}" target=_blank>{{
+                                meetup.next_event.html()|safe }}</a>
+                            {% else %}
+                            No upcoming events
+                            {% endif %}
+                        </h3>
                     <hr />
                     {% endfor %}
                 </div>
