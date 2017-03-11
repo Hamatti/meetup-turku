@@ -21,6 +21,14 @@ class Event(object):
         return '<i class="fa fa-calendar"></i> {event_date} {event_name}'.format(event_date=self.date,
                 event_name=self.event_name)
 
+    def to_json(self):
+        return {
+            'event_name': self.event_name,
+            'event_url': self.event_url,
+            'event_date': self.date,
+            'html': self.html()
+        }
+
     @property
     def date(self):
         return datetime.strftime(self.event_date, '%d.%m.%Y')
