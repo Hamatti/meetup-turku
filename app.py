@@ -10,9 +10,10 @@ app.debug=True
 
 @app.route('/')
 def hello():
-    data = json.load(open('next_events.json'))
+    cur_path = os.path.dirname(os.path.realpath(__file__))
+    infile = os.path.join(cur_path, 'next_events.json')
+    data = json.load(open(infile))
     updated = data['updated']
-    print updated
     meetups = sorted(data['data'], key=lambda x: x['meetup_name'])
     return render_template('index.html', meetups=meetups, updated=updated)
 
