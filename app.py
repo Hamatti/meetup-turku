@@ -12,6 +12,7 @@ app.debug=True
 def hello():
     data = json.load(open('next_events.json'))
     updated = data['updated']
+    print updated
     meetups = sorted(data['data'], key=lambda x: x['meetup_name'])
     return render_template('index.html', meetups=meetups, updated=updated)
 
