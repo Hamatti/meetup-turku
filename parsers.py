@@ -106,13 +106,17 @@ class MeetupParser(Parser):
         self.future_events = []
 
     def parse(self):
-        next_event = self.client.GetGroup({'urlname': self.urlname}).next_event
-        event = Event()
-        event.event_name = next_event['name']
-        event.event_date = datetime.fromtimestamp(next_event['time']/1000)
-        event.meetup_name = self.meetup.name
-        event.meetup_url = self.meetup.url
+        meetup_group = self.client.GetGroup({'urlname': self.urlname})
+        if hasattr(meetup_group, 'next_event'):
+            next_event = meetup_group.next_event
+            event = Event()
+            event.event_name = next_event['name']
+            event.event_date = datetime.fromtimestamp(next_event['time']/1000)
+            event.meetup_name = self.meetup.name
+            event_id = next_event['id']
+            event.event_url = 'https://www.meetup.com/%s/events/%s/' % (self.urlname, event_id)
+            event.meetup_url = self.meetup.url
+        else:
+            event = None
 
-        event_id = next_event['id']
-        event.event_url = 'https://www.meetup.com/%s/events/%s/' % (self.urlname, event_id)
         self.next_event = event
