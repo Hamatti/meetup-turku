@@ -1,0 +1,33 @@
+.header h1 {
+    text-align: center;
+}
+
+.meetup h3 {
+    text-align: center;
+}
+
+.meetup img {
+    width: 100px;
+    border-radius: 50px;
+    margin: 0 auto;
+}
+
+.row {
+    padding-bottom: 30px;
+    padding-top: 30px;
+}
+
+.meetup h1 {
+    font-size: 25px;
+    text-align: center;
+}
+
+.meetup h1 a {
+    color: black;
+}
+
+div.next_event > h3 {
+    font-size: 15px;
+}
+
+

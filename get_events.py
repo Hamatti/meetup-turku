@@ -18,6 +18,7 @@ def write_events(meetups):
     for meetup in meetups:
         event = {
             'meetup_name': meetup.name,
+            'logo': meetup.logo,
             'url': meetup.url,
             'next_event': None
         }

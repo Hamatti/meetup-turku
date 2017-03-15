@@ -1,4 +1,3 @@
 venv/
 *.pyc
 launch.sh
-next_events.json
