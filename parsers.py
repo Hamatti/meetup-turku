@@ -106,9 +106,10 @@ class MeetupParser(Parser):
         self.future_events = []
 
     def parse(self):
-        meetup_group = self.client.GetGroup({'urlname': self.urlname})
-        if hasattr(meetup_group, 'next_event'):
-            next_event = meetup_group.next_event
+        events = self.client.GetEvents({'group_urlname': self.urlname}).results
+        upcoming_events = sorted([ev for ev in events if ev['status'] == 'upcoming'], key=lambda x: x['time'])
+        if upcoming_events:
+            next_event = upcoming_events[0]
             event = Event()
             event.event_name = next_event['name']
             event.event_date = datetime.fromtimestamp(next_event['time']/1000)
