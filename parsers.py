@@ -1,14 +1,16 @@
-from facebook import GraphAPI
-from datetime import datetime
-import meetupdirectory
-from urlparse import urlparse
-from bs4 import BeautifulSoup
 import json
-from urllib2 import urlopen
 import os
+from datetime import datetime
+from urllib2 import urlopen
+from urlparse import urlparse
+
+from bs4 import BeautifulSoup
+from facebook import GraphAPI
 import meetup.api
 
+import meetupdirectory
 from models import Event
+
 
 class Parser(object):
 
@@ -29,7 +31,7 @@ class FacebookParser(Parser):
             self.facebook_id = meetup.fb_id
         else:
             self.facebook_id = self.get_facebook_id()
-        self.graph = GraphAPI(access_token=self.accesstoken,version='2.7')
+        self.graph = GraphAPI(access_token=self.accesstoken, version='2.7')
 
     def parse(self):
         self.fb_api()
@@ -48,14 +50,16 @@ class FacebookParser(Parser):
         if not self.facebook_id:
             self.future_events = []
             return
-        events = self.graph.get_connections(self.facebook_id, connection_name='events')['data']
+        events = self.graph.get_connections(self.facebook_id,
+                                            connection_name='events')['data']
 
         time_now = datetime.now()
         if not events:
             self.next_event = None
         else:
             next_event_data = events[0]
-            date = datetime.strptime(next_event_data['start_time'][:-5], '%Y-%m-%dT%H:%M:%S')
+            date = datetime.strptime(next_event_data['start_time'][:-5],
+                                     '%Y-%m-%dT%H:%M:%S')
             if date < time_now:
                 self.next_event = None
                 return
@@ -79,9 +83,10 @@ class MeetabitParser(Parser):
         self.meetabit_id = urlparse(self.url).path.split('/')[-1]
 
     def parse(self):
-        soup = BeautifulSoup(urlopen(MeetabitParser.api_url.format(id=self.meetabit_id)))
+        url = MeetabitParser.api_url.format(id=self.meetabit_id)
+        soup = BeautifulSoup(urlopen(url))
         events = json.loads(soup.string)
-        self.future_events = [ev for ev in events['results'] if ev['past'] == False]
+        self.future_events = [ev for ev in events['results'] if not ev['past']]
         if self.future_events:
             next_event = self.future_events[0]
             current_year = datetime.now().year

@@ -1,4 +1,4 @@
-#List of the meetups displays
+# List of the meetups displays
 
 meetups = [
    {
@@ -45,4 +45,3 @@ meetups = [
         'logo': 'maptime.png'
     },
 ]
-

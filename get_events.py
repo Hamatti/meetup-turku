@@ -1,7 +1,10 @@
-import json, os
+import json
+import os
+from datetime import datetime
+
 import meetupdirectory
 from models import Meetup
-from datetime import datetime
+
 
 def get_events():
     meetups = []
@@ -10,6 +13,7 @@ def get_events():
         mt.get_events()
         meetups.append(mt)
     return meetups
+
 
 def write_events(meetups):
     data = {}
@@ -31,6 +35,7 @@ def write_events(meetups):
     outfile = os.path.join(cur_path, 'next_events.json')
     print outfile
     json.dump(data, open(outfile, 'w'))
+
 
 if __name__ == '__main__':
     meetups = get_events()

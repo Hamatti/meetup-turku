@@ -1,5 +1,6 @@
 from datetime import datetime
 
+
 class Event(object):
 
     def __init__(self):
@@ -10,15 +11,21 @@ class Event(object):
         self.event_url = ''
 
     def __str__(self):
-        return '[{meetup}] {event_name} @ {event_date}'.format(meetup=self.meetup_name,
-                event_name=self.event_name, event_date=self.date)
+        return '[{meetup}] {event_name} @ {event_date}'.format(
+                meetup=self.meetup_name,
+                event_name=self.event_name,
+                event_date=self.date)
 
     def __repr__(self):
-        return '[{meetup}] {event_name} @ {event_date}'.format(meetup=self.meetup_name,
-                event_name=self.event_name, event_date=self.date)
+        return '[{meetup}] {event_name} @ {event_date}'.format(
+                meetup=self.meetup_name,
+                event_name=self.event_name,
+                event_date=self.date)
 
     def html(self):
-        return '<i class="fa fa-calendar"></i> {event_date} {event_name}'.format(event_date=self.date,
+        template = '<i class="fa fa-calendar"></i> {event_date} {event_name}'
+        return template.format(
+                event_date=self.date,
                 event_name=self.event_name)
 
     def to_json(self):
@@ -32,6 +39,7 @@ class Event(object):
     @property
     def date(self):
         return datetime.strftime(self.event_date, '%d.%m.%Y')
+
 
 class Meetup(object):
 
@@ -62,5 +70,3 @@ class Meetup(object):
 
     def __repr__(self):
         return '{name}'.format(name=self.name)
-
-
