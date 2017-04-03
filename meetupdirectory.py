@@ -44,4 +44,10 @@ meetups = [
         'url_source': 'meetup',
         'logo': 'maptime.png'
     },
+    {
+        'name': 'Turku Machine Learning and AI Meetup',
+        'meetup_url': 'https://www.meetup.com/Turku-Machine-Learning-and-AI-Meetup/',
+        'url_source': 'meetup',
+        'logo': 'aimeetup.png'
+    },
 ]
