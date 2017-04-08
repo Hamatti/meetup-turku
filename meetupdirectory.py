@@ -50,4 +50,10 @@ meetups = [
         'url_source': 'meetup',
         'logo': 'aimeetup.png'
     },
+    {
+        'name': 'Turku Data Science Meetup',
+        'meetup_url': 'https://www.meetup.com/Turku-Data-Science-Meetup/',
+        'url_source': 'meetup',
+        'logo': 'datascience.png'
+    }
 ]
