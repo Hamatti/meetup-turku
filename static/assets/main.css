@@ -34,3 +34,9 @@ div.next_event > h3 {
 .meetup-logo {
     height: 100px;
 }
+
+img#site-logo {
+    height: 150px;
+    margin: auto;
+    display: block;
+}
