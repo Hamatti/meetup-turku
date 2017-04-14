@@ -53,19 +53,22 @@
                 {% for meetup in row %}
                 <div class="col-md-4">
                     <div class="meetup">
-                        <center><img
-                            src="/static/assets/images/logos/{{meetup.logo}}"></center>
-                    <h1><a href="{{meetup.url}}" target=_blank>{{
-                            meetup.meetup_name }} </a></h1>
-                    <div class="next_event">
-                    <h3>{% if meetup.next_event %}
-                        <a href="{{meetup.next_event.event_url
-                                }}" target=_blank>{{
-                                meetup.next_event.html|safe }}</a>
-                            {% else %}
-                            No upcoming events
-                            {% endif %}
+                        <div class="meetup-logo">
+                            <center>
+                                <img src="/static/assets/images/logos/{{meetup.logo}}">
+                            </center>
                         </div>
+                        <h1><a href="{{meetup.url}}" target=_blank>{{
+                                meetup.meetup_name }} </a></h1>
+                        <div class="next_event">
+                            <h3>{% if meetup.next_event %}
+                                <a href="{{meetup.next_event.event_url
+                                    }}" target=_blank>{{
+                                    meetup.next_event.html|safe }}</a>
+                                {% else %}
+                                No upcoming events
+                                {% endif %}
+                            </div>
                         </h3>
                     </div>
                 </div>
