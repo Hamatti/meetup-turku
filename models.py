@@ -26,7 +26,7 @@ class Event(object):
         template = '<i class="fa fa-calendar"></i> {event_date} {event_name}'
         return template.format(
                 event_date=self.date,
-                event_name=self.event_name)
+                event_name=self.event_name.encode('utf8'))
 
     def to_json(self):
         return {
