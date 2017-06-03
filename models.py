@@ -51,6 +51,7 @@ class Meetup(object):
         self.fb_id = meetup_data.get('facebook_id')
         self.source_type = meetup_data.get('url_source')
         self.logo = meetup_data.get('logo')
+        self.id = meetup_data.get('id')
 
         if self.source_type == 'facebook':
             self.parser = FacebookParser(self)
