@@ -1,6 +1,5 @@
 from flask import Flask, render_template
 from models import Meetup
-import meetupdirectory
 
 from datetime import datetime
 import os, json
