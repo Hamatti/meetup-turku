@@ -43,10 +43,13 @@
             data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
 
         <div class="container">
-            <div class="row">
+            <div class="row header">
                 <div class="col-md-12 header">
-                    <img src="/static/assets/images/fantastic-meetups.png"
-                    id="site-logo" />
+                    <h1>Meetup Turku</h1>
+                    <p class="tagline">Find the best tech meetups in Turku from
+                    one place.</p>
+                    <p class="info">Some meetups are having a summer break so
+                    they are not dead even if there are no events in few months.</p>
                 </div>
             </div>
             {% for row in meetups|batch(3) %}
@@ -76,18 +79,20 @@
                 {% endfor %}
             </div>
             {% endfor %}
-            <span class="updated">Updated: {{ updated }}</span>
-            <footer>
-            If your meetup is missing or you want something on this site
-            changed, create a pull request in <a
-                href="https://github.com/hamatti/meetup-turku">Github</a> or
-            send an email or tweet to <a
-                href="https://twitter.com/hamatti">@hamatti / juhamattisantala
-                [at] gmail.com</a>
-            </footer>
-                </div>
+                           </div>
             </div>
         </div>
+     <footer>
+
+            <div class="updated">Updated: {{ updated }}</div>
+            <div>
+            If your meetup is missing or you want something on this site
+            changed, create an issue / a pull request in <a
+                href="https://github.com/hamatti/meetup-turku">Github</a> or
+            tweet to <a href="https://twitter.com/hamatti">@hamatti</a>
+            </div>
+            </footer>
+
     </body>
 
 </html>

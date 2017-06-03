@@ -1,3 +1,14 @@
+p.tagline {
+    text-align: center;
+}
+
+p.info {
+    text-align: center;
+    font-style: italic;
+    font-size: 0.85em;
+}
+
+
 .header h1 {
     text-align: center;
 }
@@ -16,6 +27,10 @@
     padding-top: 30px;
 }
 
+.row.header {
+    padding-bottom: 0px;
+
+}
 .meetup h1 {
     font-size: 25px;
     text-align: center;
@@ -38,4 +53,23 @@ img#site-logo {
     height: 150px;
     margin: auto;
     display: block;
+}
+
+footer {
+    background: #000000;
+    color: #fff;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+footer > div {
+    padding-left: 30px;
+}
+
+footer > div > a, footer>div>a:visited {
+    color: #32CD32;
+}
+
+footer > div > a:hover {
+    color: #72ff20;
 }
