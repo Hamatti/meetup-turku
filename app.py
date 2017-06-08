@@ -31,7 +31,7 @@ def hello():
     data = []
     for meetup in rows:
         try:
-            cur.execute("SELECT name, url, event_date FROM events WHERE events.meetup_id = %d ORDER BY event_date DESC LIMIT 1" % meetup['id'])
+            cur.execute("SELECT name, url, event_date FROM events WHERE events.meetup_id = %d and event_date >= now() ORDER BY event_date DESC LIMIT 1" % meetup['id'])
             next_event_db = cur.fetchall()
             next_event = {
                 'event_name': next_event_db[0][0],
