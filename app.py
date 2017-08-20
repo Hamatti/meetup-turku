@@ -6,13 +6,15 @@ import os, json
 import psycopg2, psycopg2.extras
 import urlparse
 
+psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
+psycopg2.extensions.register_type(psycopg2.extensions.UNICODEARRAY)
+
 app = Flask(__name__)
 app.use_reloader=False
 app.debug=True
 
 urlparse.uses_netloc.append('postgres')
 db_url = urlparse.urlparse(os.environ.get('DATABASE_URL'))
-
 conn = psycopg2.connect(
             database=db_url.path[1:],
             user=db_url.username,
