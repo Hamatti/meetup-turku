@@ -50,25 +50,29 @@ class FacebookParser(Parser):
         if not self.facebook_id:
             self.future_events = []
             return
-        events = self.graph.get_connections(self.facebook_id,
+        try:
+            events = self.graph.get_connections(self.facebook_id,
                                             connection_name='events')['data']
 
-        time_now = datetime.now()
-        if not events:
-            self.next_event = None
-        else:
-            next_event_data = events[0]
-            date = datetime.strptime(next_event_data['start_time'][:-5],
-                                     '%Y-%m-%dT%H:%M:%S')
-            if date < time_now:
+            time_now = datetime.now()
+            if not events:
                 self.next_event = None
-                return
-            self.next_event = Event()
-            self.next_event.meetup_name = self.meetup.name
-            self.next_event.meetup_url = self.meetup.url
-            self.next_event.event_name = next_event_data['name']
-            self.next_event.event_date = date
-            self.next_event.event_url = 'https://facebook.com/events/%s' % next_event_data['id']
+            else:
+                next_event_data = events[0]
+                date = datetime.strptime(next_event_data['start_time'][:-5],
+                                        '%Y-%m-%dT%H:%M:%S')
+                if date < time_now:
+                    self.next_event = None
+                    return
+                self.next_event = Event()
+                self.next_event.meetup_name = self.meetup.name
+                self.next_event.meetup_url = self.meetup.url
+                self.next_event.event_name = next_event_data['name']
+                self.next_event.event_date = date
+                self.next_event.event_url = 'https://facebook.com/events/%s' % next_event_data['id']
+        except:
+            print 'Error with %s' % self.facebook_id
+            self.next_event = None
 
     def parse_time(self, timestamp):
         return datetime.strptime(timestamp[:-5], '%Y-%m-%dT%H:%M:%S')

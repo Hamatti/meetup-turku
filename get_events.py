@@ -28,6 +28,8 @@ def get_events():
     cur = conn.cursor()
     cur.execute("SELECT name, url, source, facebook_id, logo, id FROM meetups")
     for _meetup in cur.fetchall():
+        if _meetup[2] == 'facebook':
+            pass
         meetup = {
             'name': _meetup[0],
             'meetup_url': _meetup[1],
